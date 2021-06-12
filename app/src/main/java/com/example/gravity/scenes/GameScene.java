@@ -6,6 +6,7 @@ import com.example.gravity.R;
 import com.example.gravity.classes.GameManager;
 import com.example.gravity.generators.GeneratorBackground;
 import com.example.gravity.utilits.SettingsGame;
+import com.example.gravity.utilits.UtilResource;
 import com.example.my_framework.CoreFW;
 import com.example.my_framework.SceneFW;
 
@@ -24,6 +25,8 @@ public class GameScene extends SceneFW {
         gameState = GameState.READY;
 
         gameManager = new GameManager(coreFW, sceneWidth, sceneHeight);
+
+        UtilResource.gameMusic.play(true, 10f);
     }
 
     @Override
@@ -118,16 +121,16 @@ public class GameScene extends SceneFW {
 
     @Override
     public void pause() {
-
+        UtilResource.gameMusic.stop();
     }
 
     @Override
     public void resume() {
-
+        UtilResource.gameMusic.play(true, 10f);
     }
 
     @Override
     public void dispose() {
-
+        UtilResource.gameMusic.dispose();
     }
 }

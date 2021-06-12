@@ -20,6 +20,7 @@ public class CoreFW extends AppCompatActivity {
     private GraphicsFW graphicsFW;
     private TouchListenerFW touchListenerFW;
 
+    private AudioFW audioFW;
     private Display display;
     private Point sizeDisplay;
     private Bitmap frameBuffer;
@@ -53,6 +54,7 @@ public class CoreFW extends AppCompatActivity {
         loopFW = new LoopFW(this, frameBuffer);
         graphicsFW = new GraphicsFW(getAssets(), frameBuffer);
         touchListenerFW = new TouchListenerFW(loopFW, sceneWidth, sceneHeight);
+        audioFW = new AudioFW(this);
 
         sceneFW = getStartScene();
 
@@ -63,6 +65,10 @@ public class CoreFW extends AppCompatActivity {
 
     public CoreFW() {
 
+    }
+
+    public AudioFW getAudioFW() {
+        return audioFW;
     }
 
     public void onResume() {

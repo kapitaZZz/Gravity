@@ -2,6 +2,8 @@ package com.example.gravity.utilits;
 
 import android.graphics.Bitmap;
 
+import com.example.my_framework.MusicFW;
+
 import java.util.ArrayList;
 
 public class UtilResource {
@@ -11,4 +13,5 @@ public class UtilResource {
     public static ArrayList<Bitmap> spriteEnemy;
     public static Bitmap shieldHitEnemy;
     public static ArrayList<Bitmap> spriteExplosionPlayer;
+    public static MusicFW gameMusic;
 }

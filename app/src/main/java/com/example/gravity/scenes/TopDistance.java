@@ -50,7 +50,7 @@ public class TopDistance extends SceneFW {
 
     @Override
     public void resume() {
-
+        graphicsFW.clearScene(Color.BLACK);
     }
 
     @Override
