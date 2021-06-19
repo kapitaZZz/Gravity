@@ -8,6 +8,7 @@ import com.example.gravity.classes.LoaderAssets;
 public class Main extends CoreFW {
 
     public SceneFW getStartScene() {
+        //TODO отдельный поток для лоадера loaderAssets Async
         LoaderAssets loaderAssets = new LoaderAssets(this, this.getGraphicsFW());
         return new MainMenuScene(this);
     }

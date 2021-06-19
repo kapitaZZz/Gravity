@@ -8,7 +8,6 @@ import com.example.my_framework.AnimationFW;
 import com.example.my_framework.GraphicsFW;
 import com.example.my_framework.ObjectsFW;
 import com.example.my_framework.utilits.UtilRandomFW;
-import com.example.my_framework.utilits.UtilTimerDelay;
 
 public class Protector extends ObjectsFW {
     AnimationFW animProtector;
@@ -21,7 +20,7 @@ public class Protector extends ObjectsFW {
 
         x = maxScreenX;
         y = UtilRandomFW.getGap(minScreenY, maxScreenY);
-        radius = UtilResource.spriteEnemy.get(0).getWidth() / 2;
+        radius = UtilResource.spriteEnemy.get(0).getWidth() / 2.0f;
         hitBox = new Rect(x, y, UtilResource.spriteProtector.get(0).getWidth(),
                 UtilResource.spriteProtector.get(0).getHeight());
         animProtector = new AnimationFW(GameManager.SPEED_ANIMATION,

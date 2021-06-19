@@ -4,7 +4,6 @@ import android.graphics.Color;
 
 import com.example.gravity.R;
 import com.example.gravity.classes.GameManager;
-import com.example.gravity.generators.GeneratorBackground;
 import com.example.gravity.utilits.SettingsGame;
 import com.example.gravity.utilits.UtilResource;
 import com.example.my_framework.CoreFW;
@@ -24,7 +23,7 @@ public class GameScene extends SceneFW {
         super(coreFW);
         gameState = GameState.READY;
 
-        gameManager = new GameManager(coreFW, sceneWidth, sceneHeight);
+        gameManager = new GameManager(sceneWidth, sceneHeight, coreFW);
 
         UtilResource.gameMusic.play(true, 10f);
     }
@@ -96,7 +95,7 @@ public class GameScene extends SceneFW {
 
     private void drawingStateRunning() {
         graphicsFW.clearScene(Color.BLACK);
-        gameManager.drawing(coreFW, graphicsFW);
+        gameManager.drawing(graphicsFW);
     }
 
     private void updateStateRunning() {

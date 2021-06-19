@@ -90,6 +90,18 @@ public class MainPlayer extends ObjectsFW {
             stopBoosting();
         }
 
+        boosting();
+
+        hitBox = new Rect(x, y,
+                UtilResource.spritePlayer.get(0).getWidth(),
+                UtilResource.spritePlayer.get(0).getHeight());
+
+        if (isGameOver) {
+            animExplosionPlayer.runAnimation();
+        }
+    }
+
+    private void boosting() {
         if (boosting) {
             speed += 0.1;
         } else speed -= 3;
@@ -119,14 +131,6 @@ public class MainPlayer extends ObjectsFW {
         } else if (shieldsOn) {
             animPlayerShieldsOn.runAnimation();
         } else animMainPlayer.runAnimation();
-
-        hitBox = new Rect(x, y,
-                UtilResource.spritePlayer.get(0).getWidth(),
-                UtilResource.spritePlayer.get(0).getHeight());
-
-        if (isGameOver) {
-            animExplosionPlayer.runAnimation();
-        }
     }
 
     private void stopBoosting() {

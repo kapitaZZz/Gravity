@@ -7,6 +7,7 @@ import com.example.gravity.utilits.UtilResource;
 import java.util.ArrayList;
 
 public class LoaderAssets {
+
     public LoaderAssets(CoreFW coreFW, GraphicsFW graphicsFW) {
         loadTexture(graphicsFW);
         loadSpritePlayer(graphicsFW);
