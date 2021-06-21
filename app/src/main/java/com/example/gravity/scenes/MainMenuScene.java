@@ -1,4 +1,4 @@
- package com.example.gravity.scenes;
+package com.example.gravity.scenes;
 
 import android.graphics.Color;
 
@@ -26,7 +26,6 @@ public class MainMenuScene extends SceneFW {
             UtilResource.touch.play(1);
         }
 
-
     }
 
     @Override
@@ -37,22 +36,17 @@ public class MainMenuScene extends SceneFW {
         graphicsFW.drawText(coreFW.getString(R.string.txt_mainMenu_settings), 20, 350, Color.BLUE, 40, null);
         graphicsFW.drawText(coreFW.getString(R.string.txt_mainMenu_results), 20, 400, Color.BLUE, 40, null);
         graphicsFW.drawText(coreFW.getString(R.string.txt_mainMenu_exit), 20, 450, Color.BLUE, 40, null);
-
-
     }
 
     @Override
     public void pause() {
-
     }
 
     @Override
     public void resume() {
-
     }
 
     @Override
     public void dispose() {
-
     }
 }

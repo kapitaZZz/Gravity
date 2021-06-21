@@ -5,11 +5,7 @@ import com.example.gravity.objects.Protector;
 import com.example.my_framework.GraphicsFW;
 import com.example.my_framework.utilits.UtilTimerDelay;
 
-
 public class GeneratorGifts {
-    public GeneratorGifts() {
-
-    }
 
     private int maxScreenY;
     private int maxScreenX;
@@ -17,7 +13,7 @@ public class GeneratorGifts {
     private int minScreenX;
 
     private UtilTimerDelay timerProtector;
-    private Protector mProtector;
+    private Protector Protector;
 
     public GeneratorGifts(int sceneWidth, int sceneHeight, int minScreenY) {
         init(sceneWidth, sceneHeight, minScreenY);
@@ -30,33 +26,33 @@ public class GeneratorGifts {
         this.minScreenY = minScreenY;
         this.minScreenX = 0;
 
-        mProtector = new Protector(maxScreenX, maxScreenY, minScreenY);
+        Protector = new Protector(maxScreenX, maxScreenY, minScreenY);
         timerProtector = new UtilTimerDelay();
         timerProtector.startTimer();
     }
 
     public void drawing(GraphicsFW graphicsFW) {
-        mProtector.drawing(graphicsFW);
+        Protector.drawing(graphicsFW);
     }
 
     public void update(double speedPlayer) {
         if (timerProtector.timerDelay(8) && (!MainPlayer.isShieldsOn())) {
-            mProtector.update(speedPlayer);
-            if (mProtector.getX() < minScreenX) {
-                mProtector = null;
-                mProtector = new Protector(maxScreenX, maxScreenY, minScreenY);
+            Protector.update(speedPlayer);
+            if (Protector.getX() < minScreenX) {
+                Protector = null;
+                Protector = new Protector(maxScreenX, maxScreenY, minScreenY);
                 timerProtector.startTimer();
             }
         }
     }
 
     public Protector getProtector() {
-        return mProtector;
+        return Protector;
     }
 
     public void hitProtectorWithPlayer() {
-        mProtector = null;
-        mProtector = new Protector(maxScreenX, maxScreenY, minScreenY);
+        Protector = null;
+        Protector = new Protector(maxScreenX, maxScreenY, minScreenY);
         timerProtector.startTimer();
     }
 }

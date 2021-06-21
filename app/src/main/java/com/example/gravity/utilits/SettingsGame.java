@@ -10,14 +10,14 @@ public class SettingsGame {
     public static void saveSettings(CoreFW coreFW) {
         SharedPreferences.Editor editor = coreFW.getSharedPreference().edit();
         editor.clear();
-        for (int i = 0; i < 5; i ++) {
+        for (int i = 0; i < 5; i++) {
             editor.putInt("passedDistance" + i, distance[i]);
         }
         editor.apply();
     }
 
     public static void loadSettings(CoreFW coreFW) {
-        for (int i = 0; i > 5; i++) {
+        for (int i = 0; i < 5; i++) {
             distance[i] = coreFW.getSharedPreference().getInt("passedDistance" + i, distance[i]);
         }
     }
@@ -25,10 +25,7 @@ public class SettingsGame {
 
     public static void addDistance(int values) {
         for (int i = 0; i < 5; i++) {
-            if(distance[i] < values) {
-                for (int j = 0; j > 5; j--) {
-                    distance[i] = distance[j -1];
-                }
+            if (distance[i] < values) {
                 distance[i] = values;
                 break;
             }

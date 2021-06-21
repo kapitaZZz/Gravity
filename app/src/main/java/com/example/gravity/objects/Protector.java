@@ -10,7 +10,7 @@ import com.example.my_framework.ObjectsFW;
 import com.example.my_framework.utilits.UtilRandomFW;
 
 public class Protector extends ObjectsFW {
-    AnimationFW animProtector;
+    private final AnimationFW animProtector;
 
     public Protector(int maxScreenX, int maxScreenY, int minScreenY) {
         this.maxScreenX = maxScreenX;

@@ -1,9 +1,9 @@
 package com.example.gravity.utilits;
 
-import android.graphics.Bitmap;
-
 import com.example.my_framework.MusicFW;
 import com.example.my_framework.SoundFW;
+
+import android.graphics.Bitmap;
 
 import java.util.ArrayList;
 
@@ -21,5 +21,4 @@ public class UtilResource {
     public static SoundFW hit;
     public static SoundFW explode;
     public static SoundFW touch;
-
 }

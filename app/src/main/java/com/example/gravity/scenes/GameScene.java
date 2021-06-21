@@ -12,12 +12,11 @@ import com.example.my_framework.SceneFW;
 public class GameScene extends SceneFW {
 
     enum GameState {
-        READY, RUNNING, PAUSE, GAMEOVER
+        READY, RUNNING, PAUSE, GAME_OVER
     }
 
-    GameState gameState;
-
-    GameManager gameManager;
+    private GameState gameState;
+    private final GameManager gameManager;
 
     public GameScene(CoreFW coreFW) {
         super(coreFW);
@@ -39,7 +38,7 @@ public class GameScene extends SceneFW {
         if (gameState == GameState.PAUSE) {
             updateStatePause();
         }
-        if (gameState == GameState.GAMEOVER) {
+        if (gameState == GameState.GAME_OVER) {
             updateStateGameOver();
         }
     }
@@ -57,7 +56,7 @@ public class GameScene extends SceneFW {
         if (gameState == GameState.PAUSE) {
             drawingStatePause();
         }
-        if (gameState == GameState.GAMEOVER) {
+        if (gameState == GameState.GAME_OVER) {
             drawingStateGameOver();
         }
     }
@@ -102,7 +101,7 @@ public class GameScene extends SceneFW {
 
         gameManager.update();
         if (GameManager.gameOver) {
-            gameState = GameState.GAMEOVER;
+            gameState = GameState.GAME_OVER;
         }
     }
 

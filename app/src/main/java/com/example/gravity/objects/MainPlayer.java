@@ -41,7 +41,7 @@ public class MainPlayer extends ObjectsFW {
         boosting = false;
         hitEnemy = false;
 
-        radius = UtilResource.spritePlayer.get(0).getWidth() / 6;
+        radius = UtilResource.spritePlayer.get(0).getWidth() / 6.0;
 
         timerOnGameOver = new UtilTimerDelay();
         timerOnShieldHit = new UtilTimerDelay();
@@ -90,7 +90,7 @@ public class MainPlayer extends ObjectsFW {
             stopBoosting();
         }
 
-        boosting();
+        updateBoosting();
 
         hitBox = new Rect(x, y,
                 UtilResource.spritePlayer.get(0).getWidth(),
@@ -101,7 +101,7 @@ public class MainPlayer extends ObjectsFW {
         }
     }
 
-    private void boosting() {
+    private void updateBoosting() {
         if (boosting) {
             speed += 0.1;
         } else speed -= 3;
@@ -154,9 +154,7 @@ public class MainPlayer extends ObjectsFW {
                 } else animMainPlayer.drawingAnimation(graphicsFW, x, y);
             } else {
                 graphicsFW.drawTexture(UtilResource.shieldHitEnemy, x, y);
-                if (timerOnShieldHit.timerDelay(0.2)) {
-                    hitEnemy = false;
-                } else hitEnemy = true;
+                hitEnemy = !timerOnShieldHit.timerDelay(0.2);
             }
         } else {
             animExplosionPlayer.drawingAnimation(graphicsFW, x, y);

@@ -10,20 +10,18 @@ import com.example.my_framework.utilits.UtilRandomFW;
 
 public class Enemy extends ObjectsFW {
 
-    private AnimationFW mAnimEnemy;
+    private AnimationFW AnimEnemy;
 
     public Enemy(int maxScreenX, int maxScreenY, int minScreenY, int enemyType) {
         init(maxScreenX, maxScreenY, minScreenY);
-
         initTypeEnemy(enemyType);
-
     }
 
     private void initTypeEnemy(int enemyType) {
         switch (enemyType) {
             case 1:
                 speed = UtilRandomFW.getGap(1, 6);
-                mAnimEnemy = new AnimationFW(3,
+                AnimEnemy = new AnimationFW(3,
                         UtilResource.spriteEnemy.get(0),
                         UtilResource.spriteEnemy.get(1),
                         UtilResource.spriteEnemy.get(2),
@@ -43,7 +41,7 @@ public class Enemy extends ObjectsFW {
         this.minScreenX = 0;
         x = maxScreenX;
         y = UtilRandomFW.getGap(minScreenY, maxScreenY);
-        radius = UtilResource.spriteEnemy.get(0).getWidth() / 2;
+        radius = UtilResource.spriteEnemy.get(0).getWidth() / 2.0;
     }
 
     public void update(double speedPlayer) {
@@ -53,14 +51,13 @@ public class Enemy extends ObjectsFW {
             x = maxScreenX;
             y = UtilRandomFW.getGap(minScreenY, maxScreenY);
         }
-        mAnimEnemy.runAnimation();
-
+        AnimEnemy.runAnimation();
         hitBox = new Rect(x, y, UtilResource.spriteEnemy.get(0).getWidth(),
                 UtilResource.spriteEnemy.get(0).getHeight());
     }
 
     public void drawing(GraphicsFW graphicsFW) {
-        mAnimEnemy.drawingAnimation(graphicsFW, x, y);
+        AnimEnemy.drawingAnimation(graphicsFW, x, y);
     }
 
 }

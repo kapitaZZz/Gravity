@@ -9,7 +9,7 @@ import com.example.my_framework.SceneFW;
 
 public class TopDistance extends SceneFW {
 
-    String[] numbers = new String[5];
+    private final String[] numbers = new String[5];
 
     public TopDistance(CoreFW coreFW) {
         super(coreFW);
@@ -21,7 +21,7 @@ public class TopDistance extends SceneFW {
 
     @Override
     public void update() {
-        if (coreFW.getTouchListenerFW().getTouchUp(0, sceneHeight, sceneWidth, sceneHeight)){
+        if (coreFW.getTouchListenerFW().getTouchUp(0, sceneHeight, sceneWidth, sceneHeight)) {
             coreFW.setScene(new MainMenuScene(coreFW));
         }
     }
