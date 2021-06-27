@@ -1,21 +1,59 @@
-package com.example.gravity.classes;
+package com.example.gravity.tasks;
 
+import android.annotation.SuppressLint;
+import android.os.AsyncTask;
+
+import com.example.gravity.interf.TaskCompleteListener;
+import com.example.gravity.scenes.LoaderResourceScene;
+import com.example.gravity.utilits.UtilResource;
 import com.example.my_framework.CoreFW;
 import com.example.my_framework.GraphicsFW;
-import com.example.gravity.utilits.UtilResource;
 
 import java.util.ArrayList;
 
-public class LoaderAssets {
+public class LoaderTask extends AsyncTask<Void, Integer, Void> {
 
-    public LoaderAssets(CoreFW coreFW, GraphicsFW graphicsFW) {
-        loadTexture(graphicsFW);
-        loadSpritePlayer(graphicsFW);
-        loadSpriteEnemy(graphicsFW);
-        loadOther(graphicsFW);
+    @SuppressLint("StaticFieldLeak")
+    private final CoreFW coreFW;
+    private final TaskCompleteListener taskCompleteListener;
+
+    public LoaderTask(CoreFW coreFW, TaskCompleteListener taskCompleteListener) {
+        this.coreFW = coreFW;
+        this.taskCompleteListener = taskCompleteListener;
+    }
+
+    @Override
+    protected void onProgressUpdate(Integer... values) {
+        super.onProgressUpdate(values);
+        LoaderResourceScene.setProgressLoader(values[0]);
+    }
+
+    @Override
+    protected Void doInBackground(Void... voids) {
+        loaderAssets();
+        return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+        super.onPostExecute(aVoid);
+        taskCompleteListener.onComplete();
+    }
+
+    private void loaderAssets() {
+        loadTexture(coreFW.getGraphicsFW());
+        publishProgress(100);
+        loadSpritePlayer(coreFW.getGraphicsFW());
+        publishProgress(300);
+        loadSpriteEnemy(coreFW.getGraphicsFW());
+        publishProgress(500);
+        loadOther(coreFW.getGraphicsFW());
+        publishProgress(600);
         loadAudio(coreFW);
-        loadSpritePlayerShieldsOn(graphicsFW);
-        loadGifts(graphicsFW);
+        loadSpritePlayerShieldsOn(coreFW.getGraphicsFW());
+        publishProgress(700);
+        loadGifts(coreFW.getGraphicsFW());
+        publishProgress(800);
     }
 
     private void loadGifts(GraphicsFW graphicsFW) {

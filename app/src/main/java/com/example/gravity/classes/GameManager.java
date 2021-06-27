@@ -1,6 +1,6 @@
 package com.example.gravity.classes;
 
-import com.example.gravity.CollisionDetect;
+import com.example.my_framework.utilits.CollisionDetect;
 import com.example.gravity.generators.GeneratorBackground;
 import com.example.gravity.generators.GeneratorEnemy;
 import com.example.gravity.generators.GeneratorGifts;
