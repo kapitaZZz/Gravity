@@ -2,9 +2,12 @@ package com.example.gravity.tasks;
 
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
+import android.os.Build;
 
+import com.example.gravity.R;
 import com.example.gravity.interf.TaskCompleteListener;
 import com.example.gravity.scenes.LoaderResourceScene;
+import com.example.gravity.utilits.SettingsGame;
 import com.example.gravity.utilits.UtilResource;
 import com.example.my_framework.CoreFW;
 import com.example.my_framework.GraphicsFW;
@@ -103,6 +106,10 @@ public class LoaderTask extends AsyncTask<Void, Integer, Void> {
     private void loadOther(GraphicsFW graphicsFW) {
         UtilResource.shieldHitEnemy = graphicsFW.newSprite(UtilResource.textureAtlas,
                 0, 128, 64, 64);
+        SettingsGame.loadSettings(coreFW);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            UtilResource.mainMenuFont = coreFW.getResources().getFont(R.font.comfortaa);
+        }
     }
 
     private void loadSpriteEnemy(GraphicsFW graphicsFW) {

@@ -24,7 +24,9 @@ public class GameScene extends SceneFW {
 
         gameManager = new GameManager(sceneWidth, sceneHeight, coreFW);
 
-        UtilResource.gameMusic.play(true, 10f);
+        if (SettingsGame.musicOn) {
+            UtilResource.gameMusic.play(true, 10f);
+        }
     }
 
     @Override
@@ -87,9 +89,15 @@ public class GameScene extends SceneFW {
     }
 
     private void drawingStatePause() {
+        coreFW.getGraphicsFW().drawText("PAUSED", 400, 300, Color.GREEN,
+                50, null);
     }
 
     private void updateStatePause() {
+        if (coreFW.getTouchListenerFW().getTouchUp(0, sceneHeight, sceneWidth, sceneHeight)) {
+            gameState = GameState.RUNNING;
+        }
+
     }
 
     private void drawingStateRunning() {
@@ -102,6 +110,11 @@ public class GameScene extends SceneFW {
         gameManager.update();
         if (GameManager.gameOver) {
             gameState = GameState.GAME_OVER;
+        }
+
+        if (coreFW.isPressedKeyBack()) {
+            gameState = GameState.PAUSE;
+            coreFW.setPressedKeyBack(false);
         }
     }
 
@@ -124,14 +137,16 @@ public class GameScene extends SceneFW {
 
     @Override
     public void resume() {
-        UtilResource.gameMusic.play(true, 10f);
+        if (SettingsGame.musicOn) {
+            UtilResource.gameMusic.play(true, 10f);
+        }
     }
 
     @Override
     public void dispose() {
-        UtilResource.explode.dispose();
-        UtilResource.touch.dispose();
-        UtilResource.hit.dispose();
-        UtilResource.gameMusic.dispose();
+//        UtilResource.explode.dispose();
+//        UtilResource.touch.dispose();
+//        UtilResource.hit.dispose();
+//        UtilResource.gameMusic.dispose();
     }
 }

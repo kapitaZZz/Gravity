@@ -6,6 +6,7 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
@@ -33,6 +34,8 @@ public class CoreFW extends AppCompatActivity {
     private SharedPreferences sharedPreference;
     private final String SETTINGS = "settings";
 
+    private boolean isPressedKeyBack;
+
     public SharedPreferences getSharedPreference() {
         return sharedPreference;
     }
@@ -40,27 +43,33 @@ public class CoreFW extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sharedPreference = getSharedPreferences(SETTINGS, MODE_PRIVATE);
+        init();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        sizeDisplay = new Point();
-        display = getWindowManager().getDefaultDisplay();
+    }
+
+    public void init() {
+    sharedPreference = getSharedPreferences(SETTINGS, MODE_PRIVATE);
+    sizeDisplay = new Point();
+    display = getWindowManager().getDefaultDisplay();
         display.getSize(sizeDisplay);
 
-        frameBuffer = Bitmap.createBitmap((int) FRAME_BUFFER_WIDTH, (int) FRAME_BUFFER_HEIGHT, Bitmap.Config.ARGB_8888);
-        sceneWidth = FRAME_BUFFER_WIDTH / sizeDisplay.x;
-        sceneHeight = FRAME_BUFFER_HEIGHT / sizeDisplay.y;
+    frameBuffer = Bitmap.createBitmap((int) FRAME_BUFFER_WIDTH, (int) FRAME_BUFFER_HEIGHT, Bitmap.Config.ARGB_8888);
+    sceneWidth = FRAME_BUFFER_WIDTH / sizeDisplay.x;
+    sceneHeight = FRAME_BUFFER_HEIGHT / sizeDisplay.y;
 
-        loopFW = new LoopFW(this, frameBuffer);
-        graphicsFW = new GraphicsFW(getAssets(), frameBuffer);
-        touchListenerFW = new TouchListenerFW(loopFW, sceneWidth, sceneHeight);
-        audioFW = new AudioFW(this);
+    loopFW = new LoopFW(this, frameBuffer);
+    graphicsFW = new GraphicsFW(getAssets(), frameBuffer);
+    touchListenerFW = new TouchListenerFW(loopFW, sceneWidth, sceneHeight);
+    audioFW = new AudioFW(this);
 
-        sceneFW = getStartScene();
+    sceneFW = getStartScene();
 
-        stateOnPause = false;
-        stateOnResume = false;
-        setContentView(loopFW);
+    stateOnPause = false;
+    stateOnResume = false;
+    setContentView(loopFW);
+
+    isPressedKeyBack = false;
     }
 
     public CoreFW() {
@@ -85,6 +94,22 @@ public class CoreFW extends AppCompatActivity {
         if (isFinishing()) {
             sceneFW.dispose();
         }
+    }
+
+    public boolean isPressedKeyBack() {
+        return isPressedKeyBack;
+    }
+
+    public void setPressedKeyBack(boolean pressedKeyBack) {
+        isPressedKeyBack = pressedKeyBack;
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            isPressedKeyBack = true;
+            return true;
+        }
+        return false;
     }
 
     public GraphicsFW getGraphicsFW() {
