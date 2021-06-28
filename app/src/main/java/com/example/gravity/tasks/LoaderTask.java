@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Build;
 
+import androidx.core.content.res.ResourcesCompat;
+
 import com.example.gravity.R;
 import com.example.gravity.interf.TaskCompleteListener;
 import com.example.gravity.scenes.LoaderResourceScene;
@@ -109,6 +111,8 @@ public class LoaderTask extends AsyncTask<Void, Integer, Void> {
         SettingsGame.loadSettings(coreFW);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             UtilResource.mainMenuFont = coreFW.getResources().getFont(R.font.comfortaa);
+        } else {
+            UtilResource.mainMenuFont = ResourcesCompat.getFont(coreFW.getApplicationContext(), R.font.comfortaa);
         }
     }
 
